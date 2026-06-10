@@ -1,0 +1,596 @@
+body{
+    margin: 0px;
+    background-color: #fbfbfb;
+}
+.navbarMainContainer{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
+}
+.navbarMainContainer button{
+    background-color: black;
+    color: white;
+    margin-right: 20px;
+    cursor: pointer;
+    padding: 4px;
+    height: 80%;
+    width: 100px;
+    font-size: 21px;
+    border: none;
+    border-radius: 7px;
+}
+.navbarMainContainer span {
+    margin-left: 20px;
+    font-size: 40px;
+    background: linear-gradient(
+        135deg,
+        #0a192f 0%,
+        #3f72af 55%,
+        #dbeafe 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.loginContainer{
+    width: 420px;
+    margin: 80px auto;
+    padding: 45px 35px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    border-radius: 24px;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.18),
+        inset 0 1px 1px rgba(255,255,255,0.15);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.loginContainer h2{
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+
+    background: linear-gradient(
+        135deg,
+        #0a192f 0%,
+        #3f72af 55%,
+        #dbeafe 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.loginContainer span{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-top: 8px;
+}
+
+.loginContainer input{
+    width: 95%;
+    height: 55px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 14px;
+
+    padding: 0 18px;
+
+    font-size: 17px;
+
+    background: #f8fafc;
+
+    box-shadow:
+        inset 2px 2px 6px rgba(0,0,0,0.08),
+        inset -2px -2px 6px rgba(255,255,255,0.9);
+
+    transition: 0.25s ease;
+}
+
+.loginContainer input:focus{
+    transform: scale(1.02);
+
+    box-shadow:
+        0 0 0 3px rgba(63,114,175,0.25),
+        inset 2px 2px 6px rgba(0,0,0,0.08);
+}
+
+.loginContainer button{
+    width: 100%;
+    height: 58px;
+
+    margin-top: 25px;
+
+    border: none;
+    border-radius: 16px;
+
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #0a192f 0%,
+        #112d4e 40%,
+        #3f72af 70%,
+        #dbeafe 100%
+    );
+
+    box-shadow:
+        0 10px 20px rgba(63,114,175,0.35);
+
+    transition: 0.3s ease;
+}
+
+.loginContainer button:hover{
+    transform: translateY(-3px) scale(1.02);
+
+    box-shadow:
+        0 14px 28px rgba(63,114,175,0.45);
+}
+
+.loginContainer button:active{
+    transform: scale(0.98);
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    color: #64748b;
+    font-size: 15px;
+    /* background: white; */
+}
+
+.studentGalleryContainer{
+    background-color: rgb(251, 247, 247);
+    height: auto;
+    width: 85%;
+    margin: 30px auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+}
+
+.navigateAttendanceBtn{
+    margin-left:83%;
+    margin-top: 15px;
+    height: 40px;
+    border: none;
+    padding: 9px;
+    border-radius: 4px;
+    font-size: 18px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.studentCard{
+    background-color: white;
+    color: black;
+    width: 200px;
+    height:60px ;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    transition:0.4s ease;
+}
+.studentCard:hover{
+    transform: scale(1.05);
+}
+.studentCard .name{
+    font-size: 22px;
+    font-weight: 600;
+}
+.studentCard .name span{
+    font-size: 18px;
+    color: gray;
+}
+.studentCard .percentage{
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 15px;
+}
+.green{
+    color:green;
+}
+.red{
+    color: red;
+}
+
+.studentDet{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 80%;
+    border: 1px solid black;
+    margin: 30px auto;
+    padding: 5px;
+    border-radius: 12px;
+}
+.studentDet .profile{
+    height: 50px;
+    width: 50px;
+    background-color: black;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+.studentDet .studentName{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.backBtn{
+    background-color: black;
+    color: white;
+    border: none;
+    height: 40px;
+    width: 80px;
+    margin: 20px 0px 0px 50px;
+    font-size: 20px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.attendanceContainer{
+    width: 80%;
+    margin: 20px auto;
+    height: 500px;
+}
+.attendance{
+    border: 1px solid black;
+    padding: 10px;
+    height: 48px;
+    margin-bottom: 20px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.presentBtn{
+    background-color: green;
+    color: white;
+    border: none;
+    height: 38px;
+    width: 90px;
+    font-size: 17px;
+    border-radius: 9px;
+    cursor: pointer;
+    margin-right:10px;
+}
+.absentBtn{
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
+    height: 38px;
+    width: 90px;
+    font-size: 17px;
+    border-radius: 9px;
+}
+.attendanceStatus{
+    font-size: 20px;
+}
+
+.sd{
+    margin-left:700px;
+    font-size: 22px;
+}
+
+.dateDay .date{
+    height: 190px;
+    width: 190px;
+    border-radius: 12px;
+    font-size:160px;
+    border: 5px solid #3f71af ;
+    background: linear-gradient(
+        135deg,
+        #0a192f 0%,
+        #3f72af 55%,
+        #dbeafe 100%
+    );
+    padding:5px 5px 5px 35px;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dateDay .day{
+    font-size: 170px;
+    background: linear-gradient(
+        135deg,
+        #0a192f 0%,
+        #3f72af 55%,
+        #dbeafe 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dateDay{
+    display: flex;
+    width: 80%;
+    margin:20px auto;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.below80Count{
+    font-size: 50px;
+    border: 2px solid #3f72af ;
+    width: 730px;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 30px auto;
+}
+
+.scannedStudent{
+    border: 2px solid #3f72af;
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 12px;
+    padding: 30px;
+}
+.studContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+.stud{
+    border: 1px solid #3f72af;
+    padding: 15px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+    margin: 15px;
+}
+.addAttendance{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 9px;
+    border-radius: 12px;
+    cursor:pointer;
+}
+.revokeAttendance{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 9px;
+    border-radius: 12px;
+    cursor:pointer;
+}
+.studName{
+    font-size: 22px;
+    font-weight: 700;
+}
+.studUsn{
+    color: gray;
+    font-weight: 700;
+}
+
+.startScan{
+    display: block;
+    height: 50px;
+    width: 150px;
+    font-size: 22px;
+    color: white;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    margin: 10px auto;
+}
+
+
+
+
+
+
+
+.startScan:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.scanPopup{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scanBox{
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 300px;
+    text-align: center;
+}
+
+.loader{
+    width: 45px;
+    height: 45px;
+    border: 5px solid lightgray;
+    border-top: 5px solid #3f72af;
+    border-radius: 50%;
+    margin: 20px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+    from{
+        transform: rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   TABLET (<= 1024px)
+========================= */
+@media (max-width: 1024px) {
+
+    .loginContainer {
+        width: 70%;
+        padding: 35px 25px;
+    }
+
+    .navbarMainContainer span {
+        font-size: 30px;
+    }
+
+    .studentGalleryContainer {
+        width: 95%;
+    }
+
+    .navigateAttendanceBtn {
+        margin-left: auto;
+        display: block;
+        margin-right: 20px;
+    }
+
+    .below80Count {
+        width: 90%;
+        font-size: 35px;
+    }
+
+    .sd {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .dateDay {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dateDay .date,
+    .dateDay .day {
+        font-size: 100px;
+        height: auto;
+        width: auto;
+    }
+}
+
+/* =========================
+   MOBILE (<= 768px)
+========================= */
+@media (max-width: 768px) {
+
+    .navbarMainContainer {
+        height: auto;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .navbarMainContainer button {
+        width: 20%;
+        font-size: 18px;
+    }
+
+    .loginContainer {
+        width: 90%;
+        margin: 40px auto;
+        padding: 25px 18px;
+    }
+
+    .loginContainer h2 {
+        font-size: 30px;
+    }
+    .dateDay .date{
+        font-size: 100px;
+        padding-left: 10px;
+    }
+
+    .studentGalleryContainer {
+        width: 90%;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .studentCard {
+        width: 40%;
+    }
+
+    .attendanceContainer {
+        width: 95%;
+    }
+
+    .attendance {
+        
+        height: auto;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .presentBtn,
+    .absentBtn {
+        width: 100%;
+        border-radius: 4px;
+        margin-bottom: 5px;
+    }
+
+    .studentDet {
+        height: auto;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .studentDet .studentName {
+        font-size: 24px;
+    }
+
+    .sd {
+        margin-left: 120px;
+        font-size: 18px;
+    }
+
+    .below80Count {
+        font-size: 24px;
+        padding: 15px;
+        text-align: center;
+        width: 80%;
+    }
+
+    .studContainer {
+        justify-content: center;
+    }
+
+    .stud {
+        width: 90%;
+    }
+
+    .startScan {
+        width: 80%;
+    }
+    
+}
+
