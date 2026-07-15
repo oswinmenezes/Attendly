@@ -511,13 +511,19 @@ body{
         gap: 10px;
     }
 
+    .navbarMainContainer span {
+        font-size: 24px;
+        margin-left: 10px;
+    }
+
     .navbarMainContainer button {
-        width: 20%;
-        font-size: 18px;
+        width: auto;
+        padding: 4px 10px;
+        font-size: 16px;
     }
 
     .loginContainer {
-        width: 90%;
+        width: 85%;
         margin: 40px auto;
         padding: 25px 18px;
     }
@@ -525,19 +531,22 @@ body{
     .loginContainer h2 {
         font-size: 30px;
     }
-    .dateDay .date{
-        font-size: 100px;
-        padding-left: 10px;
+
+    .dateDay .date,
+    .dateDay .day {
+        font-size: 60px;
+        padding: 10px;
+        text-align: center;
     }
 
     .studentGalleryContainer {
-        width: 90%;
-        justify-content: space-between;
-        gap: 30px;
+        width: 100%;
+        padding: 10px;
+        gap: 15px;
     }
 
     .studentCard {
-        width: 40%;
+        width: 45%;
     }
 
     .attendanceContainer {
@@ -545,31 +554,45 @@ body{
     }
 
     .attendance {
-        
         height: auto;
         gap: 10px;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .attendanceStatus {
+        margin-bottom: 10px;
     }
 
     .presentBtn,
     .absentBtn {
         width: 100%;
-        border-radius: 4px;
+        border-radius: 6px;
         margin-bottom: 5px;
     }
 
     .studentDet {
         height: auto;
+        flex-direction: column;
         text-align: center;
         padding: 15px;
+        width: 90%;
+    }
+
+    .studentDet .profile {
+        margin: 0 auto 10px auto;
     }
 
     .studentDet .studentName {
         font-size: 24px;
+        margin-left: 0;
     }
 
     .sd {
-        margin-left: 120px;
+        margin-left: 0;
+        text-align: center;
         font-size: 18px;
     }
 
@@ -577,7 +600,12 @@ body{
         font-size: 24px;
         padding: 15px;
         text-align: center;
-        width: 80%;
+        width: 85%;
+    }
+
+    .scannedStudent {
+        width: 95%;
+        padding: 15px;
     }
 
     .studContainer {
@@ -585,7 +613,13 @@ body{
     }
 
     .stud {
-        width: 90%;
+        width: 100%;
+        margin: 10px 0;
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
     }
 
     .startScan {
