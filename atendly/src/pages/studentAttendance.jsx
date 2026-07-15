@@ -1,68 +1,121 @@
 import { useParams } from "react-router-dom";
 import BackBtn from "../components/backButton";
 import Navbar from "../components/navbar";
-import {useState,useEffect} from "react"
+import { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient";
 
-export default function StudentAttendance(){
-    const {name}=useParams();
-    console.log(name);
-    const [attendanceData,setAttendanceData] =useState([]);
-    const [attendance_percent,setAttendancePercent]=useState(0);
+export default function StudentAttendance() {
+    const { name } = useParams();
+
+    const [attendanceData, setAttendanceData] = useState([]);
+    const [attendancePercent, setAttendancePercent] = useState(0);
+
     useEffect(() => {
         const fetchAttendance = async () => {
             const { data, error } = await supabase
                 .from("attendance")
-                .select("*").eq("name",name);
+                .select("*")
+                .eq("name", name)
+                .order("session_id", { ascending: true });
 
             if (error) {
                 console.log("Error:", error);
-            } else {
-                console.log(data);
-                setAttendanceData(data);
-                const total = data.length;
-                const present = data.filter(
-                (item) => item.status === "Present"
-                ).length;
-
-                const percent =
-                total === 0 ? 0 : Math.floor((present / total) * 100);
-
-                setAttendancePercent(percent);
-                console.log(percent);
+                return;
             }
-            };
 
-            fetchAttendance();
-        }, []);
+            setAttendanceData(data);
+            recalcPercent(data);
+        };
 
-    return <div className="studentAttendancePage">
-        <Navbar />
-        <BackBtn />
-        <div className="studentDet">
-            <div className="profile"></div>
-            <div className="studentName">{name}</div>
-            <div className="sd">Attendance :{attendance_percent}</div> 
-            {/* can remove the attendance 80 line if it fucks up */}
-        </div>
-        
-        <div className="attendanceContainer">
-            {
-            attendanceData.map((curr)=>{
-                return <div className="attendance" key={curr.session_id}>
-                    <span>{curr.date}</span>
-                    <span className={`attendanceStatus ${curr.status=="Present"?'green':'red'}`}>{curr.status}</span>
-                    <div className="presentAbsentBtns">
-                        <button className="presentBtn" onClick={async()=>{
-                            await supabase.from("attendance").update({status:"Present"}).eq("session_id",curr.session_id)
-                        }}>Present</button>
-                        <button className="absentBtn" onClick={async()=>{
-                            await supabase.from("attendance").update({status:"Absent"}).eq("session_id",curr.session_id)
-                        }}>Absent</button>
+        fetchAttendance();
+    }, []);
+
+    // -----------------------------
+    // RECALC PERCENT FROM LOCAL DATA
+    // -----------------------------
+    const recalcPercent = (data) => {
+        const total = data.length;
+        const present = data.filter((i) => i.status === "Present").length;
+        const percent = total === 0 ? 0 : Math.round((present / total) * 100);
+        setAttendancePercent(percent);
+        return { present, total, percent };
+    };
+
+    // -----------------------------
+    // UPDATE STATUS
+    // -----------------------------
+    const updateStatus = async (sessionId, newStatus) => {
+        // 1. Update attendance table
+        const { error } = await supabase
+            .from("attendance")
+            .update({ status: newStatus })
+            .eq("session_id", sessionId)
+            .eq("name", name);
+
+        if (error) { console.error(error); return; }
+
+        // 2. Update local state immediately
+        const updatedData = attendanceData.map((item) =>
+            item.session_id === sessionId
+                ? { ...item, status: newStatus }
+                : item
+        );
+        setAttendanceData(updatedData);
+
+        // 3. Recalc percent locally
+        const { present, total } = recalcPercent(updatedData);
+
+        // 4. Update student_details.attendance percentage
+        await supabase
+            .from("student_details")
+            .update({ attendance: Math.round((present / total) * 100) })
+            .eq("name", name);
+    };
+
+    // -----------------------------
+    // UI
+    // -----------------------------
+    return (
+        <div className="studentAttendancePage">
+            <Navbar />
+            <BackBtn />
+
+            <div className="studentDet">
+                <div className="profile"></div>
+                <div className="studentName">{name}</div>
+                <div className="sd">Attendance: {attendancePercent}%</div>
+            </div>
+
+            <div className="attendanceContainer">
+                {attendanceData.map((curr) => (
+                    <div className="attendance" key={curr.session_id}>
+                        <span>{curr.date}</span>
+                        <span
+                            className={`attendanceStatus ${
+                                curr.status === "Present" ? "green" : "red"
+                            }`}
+                        >
+                            {curr.status}
+                        </span>
+                        <div className="presentAbsentBtns">
+                            <button
+                                className="presentBtn"
+                                disabled={curr.status === "Present"}
+                                onClick={() => updateStatus(curr.session_id, "Present")}
+                            >
+                                Present
+                            </button>
+                            <button
+                                className="absentBtn"
+                                disabled={curr.status === "Absent"}
+                                onClick={() => updateStatus(curr.session_id, "Absent")}
+                            >
+                                Absent
+                            </button>
+                        </div>
                     </div>
-                </div>
-            })
-            }
+                ))}
+            </div>
         </div>
-    </div>
+    );
 }

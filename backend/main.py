@@ -1,18 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 
 from matlab_engine import scan_faces
 from camera_service import capture_scan_images
 
 app = FastAPI()
 
-# 🔥 MUST be immediately after app creation
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://192.168.29.25:5173"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,3 +30,6 @@ def scan():
         "present": result,
         "count": len(result)
     }
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=3000)

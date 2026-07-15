@@ -255,26 +255,7 @@ export default function ScanAttendance() {
                         </div>
                     </div>
 
-                    <div className="studentsAbsent scannedStudent">
-                        <h2>ID detected but face not detected</h2>
-                        <div className="studContainer">
-                            {absentStudents.map((curr, i) => (
-                                <div className="stud" key={i}>
-                                    <div>
-                                        <span>{curr.name}</span>
-                                        <br />
-                                        <span>{curr.usn}</span>
-                                    </div>
-                                    <button
-                                        className="addAttendance"
-                                        onClick={() => markPresent(curr.name)}
-                                    >
-                                        Mark Present
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    
                 </>
             )}
         </div>
