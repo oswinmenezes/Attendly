@@ -6,8 +6,8 @@ cap = cv2.VideoCapture(0)
 
 
 def capture_scan_images():
-    duration=15
-    interval=3
+    duration = 15
+    interval = 3
     images = []
 
     start = time.time()
@@ -19,6 +19,10 @@ def capture_scan_images():
         if not ret:
             continue
 
+        # Display camera preview window
+        cv2.imshow("Face Scanning - Keep Still", frame)
+        cv2.waitKey(1)
+
         if time.time() - last >= interval:
 
             success, buffer = cv2.imencode(".jpg", frame)
@@ -29,4 +33,5 @@ def capture_scan_images():
 
             last = time.time()
 
+    cv2.destroyAllWindows()
     return images
