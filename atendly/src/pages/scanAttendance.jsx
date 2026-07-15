@@ -4,7 +4,7 @@ import Navbar from "../components/navbar";
 import axios from "axios";
 import { supabase } from "../../supabaseClient";
 import { useParams } from "react-router-dom";
-
+const ip_address = import.meta.env.VITE_IP_ADDRESS;
 export default function ScanAttendance() {
     const { session_id } = useParams();
 
@@ -72,7 +72,7 @@ export default function ScanAttendance() {
             setScan(false);
 
             // 1. FACE AND BLE API CALL
-            const result = await axios.post("http://192.168.29.25:3000/scan");
+            const result = await axios.post(`http://${ip_address}:3000/scan`);
             const faces = result.data.face_present || result.data.present || [];
             const bles = result.data.ble_present || [];
             console.log("RAW API Faces:", faces);
