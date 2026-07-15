@@ -12,9 +12,11 @@ export default function ScanAttendance() {
     const [loading, setLoading] = useState(false);
     const [students, setStudents] = useState([]);
     const [detectedFaces, setDetectedFaces] = useState([]);
+    const [detectedBle, setDetectedBle] = useState([]);
 
     const currentSessionId = useRef(session_id || null);
     const [presentNames, setPresentNames] = useState(new Set());
+    const [bleNames, setBleNames] = useState(new Set());
 
     useEffect(() => {
         const fetchStudents = async () => {
@@ -69,13 +71,17 @@ export default function ScanAttendance() {
             setLoading(true);
             setScan(false);
 
-            // 1. FACE API CALL
+            // 1. FACE AND BLE API CALL
             const result = await axios.post("http://192.168.29.25:3000/scan");
-            const faces = result.data.present || [];
-            console.log("RAW API:", faces);
+            const faces = result.data.face_present || result.data.present || [];
+            const bles = result.data.ble_present || [];
+            console.log("RAW API Faces:", faces);
+            console.log("RAW API BLE:", bles);
             setDetectedFaces(faces);
+            setDetectedBle(bles);
 
             const presentSet = new Set(faces.map(normalize));
+            const bleSet = new Set(bles.map(normalize));
 
             // 2. GET NEW SESSION ID
             const { data: sessions } = await supabase
@@ -132,8 +138,9 @@ export default function ScanAttendance() {
                 }
             }
 
-            // 6. Seed local present state
+            // 6. Seed local present and BLE states
             setPresentNames(new Set(faces.map(normalize)));
+            setBleNames(bleSet);
 
             setScan(true);
             console.log("Session saved:", newSessionId);
@@ -183,8 +190,15 @@ export default function ScanAttendance() {
     const presentStudents = students.filter((s) =>
         presentNames.has(normalize(s.name))
     );
+    const bleOnlyStudents = students.filter(
+        (s) =>
+            !presentNames.has(normalize(s.name)) &&
+            bleNames.has(normalize(s.name))
+    );
     const absentStudents = students.filter(
-        (s) => !presentNames.has(normalize(s.name))
+        (s) =>
+            !presentNames.has(normalize(s.name)) &&
+            !bleNames.has(normalize(s.name))
     );
 
     return (
@@ -234,6 +248,31 @@ export default function ScanAttendance() {
                         </div>
                     </div>
 
+                    <div className="studentsBleOnly scannedStudent">
+                        <h2>BLE Detected, Face Not Found (Device Only Detected)</h2>
+                        <div className="studContainer">
+                            {bleOnlyStudents.length === 0 ? (
+                                <span style={{ color: 'gray', padding: '15px' }}>No devices detected with missing faces</span>
+                            ) : (
+                                bleOnlyStudents.map((curr, i) => (
+                                    <div className="stud" key={i}>
+                                        <div>
+                                            <span>{curr.name}</span>
+                                            <br />
+                                            <span>{curr.usn}</span>
+                                        </div>
+                                        <button
+                                            className="addAttendance"
+                                            onClick={() => markPresent(curr.name)}
+                                        >
+                                            Mark Present
+                                        </button>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+
                     <div className="studentsAbsent scannedStudent">
                         <h2>Students Absent</h2>
                         <div className="studContainer">
@@ -254,8 +293,6 @@ export default function ScanAttendance() {
                             ))}
                         </div>
                     </div>
-
-                    
                 </>
             )}
         </div>
