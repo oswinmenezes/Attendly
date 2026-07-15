@@ -1,6 +1,11 @@
-export default function Navbar(){
+export default function Navbar() {
+    function handleLogout() {
+        localStorage.removeItem("isAuthenticated");
+        setIsAuthenticated(false);
+        navigate("/login");
+    }
     return <div className="navbarMainContainer">
         <span>Attendly</span>
-        <button>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
     </div>
 }
