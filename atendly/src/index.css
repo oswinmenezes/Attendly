@@ -507,19 +507,19 @@ body{
 
     .navbarMainContainer {
         height: auto;
-        padding: 10px;
+        padding: 10px 0px 10px 10px;
         gap: 10px;
     }
 
     .navbarMainContainer span {
-        font-size: 24px;
+        font-size: 34px;
         margin-left: 10px;
     }
 
     .navbarMainContainer button {
         width: auto;
-        padding: 4px 10px;
-        font-size: 16px;
+        padding: 6px 10px;
+        font-size: 20px;
     }
 
     .loginContainer {
