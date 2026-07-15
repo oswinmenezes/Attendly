@@ -1,15 +1,17 @@
-body{
+body {
     margin: 0px;
     background-color: #fbfbfb;
 }
-.navbarMainContainer{
+
+.navbarMainContainer {
     height: 50px;
     display: flex;
     align-items: center;
     background-color: white;
     justify-content: space-between;
 }
-.navbarMainContainer button{
+
+.navbarMainContainer button {
     background-color: black;
     color: white;
     margin-right: 20px;
@@ -21,20 +23,19 @@ body{
     border: none;
     border-radius: 7px;
 }
+
 .navbarMainContainer span {
     margin-left: 20px;
     font-size: 40px;
-    background: linear-gradient(
-        135deg,
-        #0a192f 0%,
-        #3f72af 55%,
-        #dbeafe 100%
-    );
+    background: linear-gradient(135deg,
+            #0a192f 0%,
+            #3f72af 55%,
+            #dbeafe 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.loginContainer{
+.loginContainer {
     width: 420px;
     margin: 80px auto;
     padding: 45px 35px;
@@ -45,35 +46,33 @@ body{
 
     border-radius: 24px;
 
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(18px);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.18),
-        inset 0 1px 1px rgba(255,255,255,0.15);
+        0 10px 30px rgba(0, 0, 0, 0.18),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15);
 
     font-family: Arial, Helvetica, sans-serif;
 
 }
 
-.loginContainer h2{
+.loginContainer h2 {
     text-align: center;
     font-size: 42px;
     margin-bottom: 20px;
     line-height: 1.2;
 
-    background: linear-gradient(
-        135deg,
-        #0a192f 0%,
-        #3f72af 55%,
-        #dbeafe 100%
-    );
+    background: linear-gradient(135deg,
+            #0a192f 0%,
+            #3f72af 55%,
+            #dbeafe 100%);
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.loginContainer span{
+.loginContainer span {
     width: 100%;
     font-size: 18px;
     font-weight: 600;
@@ -81,7 +80,7 @@ body{
     margin-top: 8px;
 }
 
-.loginContainer input{
+.loginContainer input {
     width: 95%;
     height: 55px;
 
@@ -97,21 +96,21 @@ body{
     background: #f8fafc;
 
     box-shadow:
-        inset 2px 2px 6px rgba(0,0,0,0.08),
-        inset -2px -2px 6px rgba(255,255,255,0.9);
+        inset 2px 2px 6px rgba(0, 0, 0, 0.08),
+        inset -2px -2px 6px rgba(255, 255, 255, 0.9);
 
     transition: 0.25s ease;
 }
 
-.loginContainer input:focus{
+.loginContainer input:focus {
     transform: scale(1.02);
 
     box-shadow:
-        0 0 0 3px rgba(63,114,175,0.25),
-        inset 2px 2px 6px rgba(0,0,0,0.08);
+        0 0 0 3px rgba(63, 114, 175, 0.25),
+        inset 2px 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.loginContainer button{
+.loginContainer button {
     width: 100%;
     height: 58px;
 
@@ -126,32 +125,30 @@ body{
 
     cursor: pointer;
 
-    background: linear-gradient(
-        135deg,
-        #0a192f 0%,
-        #112d4e 40%,
-        #3f72af 70%,
-        #dbeafe 100%
-    );
+    background: linear-gradient(135deg,
+            #0a192f 0%,
+            #112d4e 40%,
+            #3f72af 70%,
+            #dbeafe 100%);
 
     box-shadow:
-        0 10px 20px rgba(63,114,175,0.35);
+        0 10px 20px rgba(63, 114, 175, 0.35);
 
     transition: 0.3s ease;
 }
 
-.loginContainer button:hover{
+.loginContainer button:hover {
     transform: translateY(-3px) scale(1.02);
 
     box-shadow:
-        0 14px 28px rgba(63,114,175,0.45);
+        0 14px 28px rgba(63, 114, 175, 0.45);
 }
 
-.loginContainer button:active{
+.loginContainer button:active {
     transform: scale(0.98);
 }
 
-.footer{
+.footer {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -162,7 +159,7 @@ body{
     /* background: white; */
 }
 
-.studentGalleryContainer{
+.studentGalleryContainer {
     background-color: rgb(251, 247, 247);
     height: auto;
     width: 85%;
@@ -171,11 +168,11 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    
+
 }
 
-.navigateAttendanceBtn{
-    margin-left:83%;
+.navigateAttendanceBtn {
+    margin-left: 83%;
     margin-top: 15px;
     height: 40px;
     border: none;
@@ -186,42 +183,49 @@ body{
     color: white;
     cursor: pointer;
 }
-.studentCard{
+
+.studentCard {
     background-color: white;
     color: black;
     width: 200px;
-    height:60px ;
+    height: 60px;
     border-radius: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor:pointer;
-    transition:0.4s ease;
+    cursor: pointer;
+    transition: 0.4s ease;
 }
-.studentCard:hover{
+
+.studentCard:hover {
     transform: scale(1.05);
 }
-.studentCard .name{
+
+.studentCard .name {
     font-size: 22px;
     font-weight: 600;
 }
-.studentCard .name span{
+
+.studentCard .name span {
     font-size: 18px;
     color: gray;
 }
-.studentCard .percentage{
+
+.studentCard .percentage {
     font-size: 30px;
     font-weight: 500;
     margin-left: 15px;
 }
-.green{
-    color:green;
+
+.green {
+    color: green;
 }
-.red{
+
+.red {
     color: red;
 }
 
-.studentDet{
+.studentDet {
     display: flex;
     align-items: center;
     height: 60px;
@@ -231,19 +235,21 @@ body{
     padding: 5px;
     border-radius: 12px;
 }
-.studentDet .profile{
+
+.studentDet .profile {
     height: 50px;
     width: 50px;
     background-color: black;
     border-radius: 50%;
     margin-left: 20px;
 }
-.studentDet .studentName{
+
+.studentDet .studentName {
     font-size: 30px;
     margin-left: 20px;
 }
 
-.backBtn{
+.backBtn {
     background-color: black;
     color: white;
     border: none;
@@ -254,12 +260,14 @@ body{
     border-radius: 7px;
     cursor: pointer;
 }
-.attendanceContainer{
+
+.attendanceContainer {
     width: 80%;
     margin: 20px auto;
     height: 500px;
 }
-.attendance{
+
+.attendance {
     border: 1px solid black;
     padding: 10px;
     height: 48px;
@@ -269,7 +277,8 @@ body{
     align-items: center;
     justify-content: space-between;
 }
-.presentBtn{
+
+.presentBtn {
     background-color: green;
     color: white;
     border: none;
@@ -278,9 +287,10 @@ body{
     font-size: 17px;
     border-radius: 9px;
     cursor: pointer;
-    margin-right:10px;
+    margin-right: 10px;
 }
-.absentBtn{
+
+.absentBtn {
     cursor: pointer;
     background-color: red;
     color: white;
@@ -290,73 +300,74 @@ body{
     font-size: 17px;
     border-radius: 9px;
 }
-.attendanceStatus{
+
+.attendanceStatus {
     font-size: 20px;
 }
 
-.sd{
-    margin-left:700px;
+.sd {
+    margin-left: 700px;
     font-size: 22px;
 }
 
-.dateDay .date{
+.dateDay .date {
     height: 190px;
     width: 190px;
     border-radius: 12px;
-    font-size:160px;
-    border: 5px solid #3f71af ;
-    background: linear-gradient(
-        135deg,
-        #0a192f 0%,
-        #3f72af 55%,
-        #dbeafe 100%
-    );
-    padding:5px 5px 5px 35px;
+    font-size: 160px;
+    border: 5px solid #3f71af;
+    background: linear-gradient(135deg,
+            #0a192f 0%,
+            #3f72af 55%,
+            #dbeafe 100%);
+    padding: 5px 5px 5px 35px;
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.dateDay .day{
+
+.dateDay .day {
     font-size: 170px;
-    background: linear-gradient(
-        135deg,
-        #0a192f 0%,
-        #3f72af 55%,
-        #dbeafe 100%
-    );
+    background: linear-gradient(135deg,
+            #0a192f 0%,
+            #3f72af 55%,
+            #dbeafe 100%);
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.dateDay{
+
+.dateDay {
     display: flex;
     width: 80%;
-    margin:20px auto;
+    margin: 20px auto;
     align-items: center;
     justify-content: space-around;
 }
 
-.below80Count{
+.below80Count {
     font-size: 50px;
-    border: 2px solid #3f72af ;
+    border: 2px solid #3f72af;
     width: 730px;
     padding: 20px;
     border-radius: 12px;
     margin: 30px auto;
 }
 
-.scannedStudent{
+.scannedStudent {
     border: 2px solid #3f72af;
     width: 80%;
     margin: 20px auto;
     border-radius: 12px;
     padding: 30px;
 }
-.studContainer{
+
+.studContainer {
     display: flex;
     flex-wrap: wrap;
 }
-.stud{
+
+.stud {
     border: 1px solid #3f72af;
     padding: 15px;
     height: 40px;
@@ -366,32 +377,36 @@ body{
     justify-content: space-between;
     margin: 15px;
 }
-.addAttendance{
+
+.addAttendance {
     background-color: green;
     color: white;
     border: none;
     padding: 9px;
     border-radius: 12px;
-    cursor:pointer;
+    cursor: pointer;
 }
-.revokeAttendance{
+
+.revokeAttendance {
     background-color: red;
     color: white;
     border: none;
     padding: 9px;
     border-radius: 12px;
-    cursor:pointer;
+    cursor: pointer;
 }
-.studName{
+
+.studName {
     font-size: 22px;
     font-weight: 700;
 }
-.studUsn{
+
+.studUsn {
     color: gray;
     font-weight: 700;
 }
 
-.startScan{
+.startScan {
     display: block;
     height: 50px;
     width: 150px;
@@ -410,21 +425,21 @@ body{
 
 
 
-.startScan:disabled{
+.startScan:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
-.scanPopup{
+.scanPopup {
     position: fixed;
     inset: 0;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.scanBox{
+.scanBox {
     background-color: white;
     padding: 30px;
     border-radius: 16px;
@@ -432,7 +447,7 @@ body{
     text-align: center;
 }
 
-.loader{
+.loader {
     width: 45px;
     height: 45px;
     border: 5px solid lightgray;
@@ -442,12 +457,12 @@ body{
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin{
-    from{
+@keyframes spin {
+    from {
         transform: rotate(0deg);
     }
 
-    to{
+    to {
         transform: rotate(360deg);
     }
 }
@@ -542,7 +557,10 @@ body{
     .studentGalleryContainer {
         width: 100%;
         padding: 10px;
+        padding-bottom: 70px;
+        box-sizing: border-box;
         gap: 15px;
+        justify-content: space-evenly;
     }
 
     .studentCard {
@@ -554,7 +572,7 @@ body{
     }
 
     .attendance {
-        
+
         height: auto;
         gap: 10px;
         align-items: flex-start;
@@ -600,6 +618,5 @@ body{
     .startScan {
         width: 80%;
     }
-    
-}
 
+}
