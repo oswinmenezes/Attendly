@@ -1,17 +1,31 @@
 # Attendly – Smart Attendance System
 
-Attendly is an intelligent attendance management system that combines **facial recognition** and **Bluetooth Low Energy (BLE)** technology to provide secure, automated, and reliable attendance tracking.
+Attendly is an intelligent attendance management system that combines **Facial Recognition** and **Bluetooth Low Energy (BLE)** technology to provide secure, automated, and reliable attendance tracking.
 
-Traditional attendance systems often suffer from issues such as proxy attendance, manual errors, and time-consuming verification processes. Attendly addresses these challenges through a **dual-verification mechanism**, ensuring that attendance is marked only when both the student's face and BLE identity are verified.
+Traditional attendance systems often suffer from proxy attendance, manual errors, and time-consuming verification processes. Attendly addresses these challenges through a **dual-verification mechanism**, ensuring that attendance is marked only when both the student's face and BLE identity are verified.
 
 ---
 
-## Key Features
+## Problem Statement
+
+Conventional attendance systems face several limitations:
+
+* Proxy attendance by classmates
+* Manual attendance errors
+* Time-consuming roll calls
+* Lack of automated verification mechanisms
+* Difficulty in monitoring large classrooms efficiently
+
+Attendly aims to solve these issues by introducing a secure, automated, and scalable attendance solution.
+
+---
+
+# Key Features
 
 ### Dual Verification System
 
-* Facial Recognition using deep learning models.
-* BLE-based proximity verification using student devices or tags.
+* Facial recognition using deep learning models.
+* BLE-based proximity verification using student devices or BLE tags.
 * Significantly reduces chances of proxy attendance.
 
 ### Automated Attendance Marking
@@ -21,11 +35,11 @@ Traditional attendance systems often suffer from issues such as proxy attendance
 
 ### Real-Time Dashboard
 
-* Displays:
+Displays:
 
-  * Present Students
-  * Absent Students
-  * BLE-only detections (manual verification required)
+* Present Students
+* Absent Students
+* Manual Review Cases (BLE detected but face not recognized)
 
 ### Intelligent Face Recognition Pipeline
 
@@ -35,52 +49,40 @@ Traditional attendance systems often suffer from issues such as proxy attendance
 
 ### Cross Verification Using BLE
 
-* Detects nearby student devices asynchronously.
+* Detects nearby BLE devices asynchronously.
 * Adds an additional layer of verification beyond facial recognition.
 
 ### Cloud Database Integration
 
-* Stores student information, embeddings, and attendance records using Supabase.
-
----
-
-# Problem Statement
-
-Conventional attendance systems face several limitations:
-
-* Proxy attendance by classmates
-* Manual attendance errors
-* Time-consuming roll calls
-* Lack of automated verification mechanisms
-
-Attendly aims to solve these issues by introducing a secure, automated, and scalable attendance solution.
+* Stores student information, facial embeddings, and attendance records using Supabase.
 
 ---
 
 # System Architecture
 
 ```text
-                    ┌─────────────────┐
+                    ┌──────────────────┐
                     │ Teacher Dashboard│
                     │    (React App)   │
-                    └────────┬────────┘
+                    └────────┬─────────┘
                              │
                              ▼
-                    ┌─────────────────┐
-                    │ FastAPI Backend │
-                    └───────┬─────────┘
-                            │
-         ┌──────────────────┼──────────────────┐
-         ▼                  ▼                  ▼
-   OpenCV Camera      MATLAB Engine        BLE Scanner
-  (Face Capture)    (Face Recognition)      (Bleak)
-         │                  │                  │
-         └──────────────────┼──────────────────┘
-                            ▼
-                    ┌─────────────────┐
-                    │    Supabase     │
-                    │ Database & APIs │
-                    └─────────────────┘
+               ┌────────────────────────┐
+               │ Central Camera Server  │
+               │     FastAPI Backend    │
+               └──────────┬─────────────┘
+                          │
+      ┌───────────────────┼───────────────────┐
+      ▼                   ▼                   ▼
+ OpenCV Camera      MATLAB Engine        BLE Scanner
+(Face Capture)    (Face Recognition)       (Bleak)
+      │                   │                   │
+      └───────────────────┼───────────────────┘
+                          ▼
+                ┌──────────────────┐
+                │    Supabase      │
+                │ Database & APIs  │
+                └──────────────────┘
 ```
 
 ---
@@ -103,50 +105,20 @@ Attendly aims to solve these issues by introducing a secure, automated, and scal
 ```text
 Attendly/
 │
-├── atendly/                 # React Frontend
+├── atendly/                  # React Frontend
 │
-├── backend/                 # FastAPI Backend
+├── backend/                  # FastAPI Backend
 │   ├── main.py
 │   ├── camera_service.py
 │   ├── matlab_engine.py
-│   └── ble_scanner.py
+│   ├── ble_scanner.py
+│   └── requirements.txt
 │
-├── dataset/                 # Student images
-├── processed_dataset/       # Cropped face images
+├── dataset/                  # Raw student images
+├── processed_dataset/        # Cropped face images
 ├── README.md
 └── .env
 ```
-### Configure Backend IP Address
-
-Attendly is designed such that the machine running the backend acts as a **central camera server**, similar to a CCTV system in a classroom. Other devices on the same network communicate with this server to trigger scans and retrieve attendance results.
-
-Find the local IPv4 address of the backend machine:
-
-**Windows**
-
-```bash
-ipconfig
-```
-
-Locate:
-
-```text
-IPv4 Address . . . . . . . . . . : 192.168.x.x
-```
-
-Add this IP to the frontend `.env` file:
-
-```env
-VITE_BACKEND_URL=http://192.168.x.x:3000
-```
-
-Example:
-
-```env
-VITE_BACKEND_URL=http://192.168.1.15:3000
-```
-
-**Note:** If the device reconnects to a different network, the IP address may change and the `.env` file should be updated accordingly.
 
 ---
 
@@ -158,7 +130,7 @@ The teacher initiates attendance scanning through the dashboard.
 
 ### 2. Face Capture
 
-The backend captures image frames from the classroom camera.
+The backend captures classroom images through the central camera device.
 
 ### 3. Face Recognition
 
@@ -190,42 +162,81 @@ Attendance results are displayed in real time.
 * Node.js and npm
 * MATLAB with Python Engine API installed
 * Supabase Project
-* Webcam for image capture
-* BLE-enabled device
+* Webcam or External Camera
+* BLE-enabled devices or tags
 
 ---
 
 # Backend Installation
 
-### Clone Repository
+## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/Attendly.git
+git clone https://github.com/oswinmenezes/Attendly.git
 cd Attendly/backend
 ```
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Configure Environment Variables
+## Configure Environment Variables
 
 Create a `.env` file:
 
 ```env
 VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_key
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+VITE_BACKEND_URL=http://192.168.x.x:3000
 ```
 
-### Start Backend
+---
+
+# Configure Backend IP Address
+
+Attendly is designed such that the machine running the backend acts as a **central camera server**, similar to a CCTV system inside a classroom.
+
+Other devices on the same network communicate with this server to initiate scans and retrieve attendance results.
+
+### Find Local IPv4 Address
+
+**Windows**
+
+```bash
+ipconfig
+```
+
+Locate:
+
+```text
+IPv4 Address . . . . . . . . . . : 192.168.x.x
+```
+
+Add this IP to the frontend `.env` file:
+
+```env
+VITE_BACKEND_URL=http://192.168.x.x:3000
+```
+
+Example:
+
+```env
+VITE_BACKEND_URL=http://192.168.1.15:3000
+```
+
+> **Note:** If the machine reconnects to a different network, its IP address may change and the `.env` file should be updated accordingly.
+
+---
+
+# Start Backend
 
 ```bash
 python main.py
 ```
 
-Backend server:
+Backend Server:
 
 ```text
 http://localhost:3000
@@ -241,7 +252,7 @@ npm install
 npm run dev
 ```
 
-Frontend server:
+Frontend Server:
 
 ```text
 http://localhost:5173
@@ -251,11 +262,11 @@ http://localhost:5173
 
 # Attendance States
 
-| Status          | Description                          |
-| --------------- | ------------------------------------ |
-| Present         | Face and BLE successfully matched    |
-| Device Detected | BLE detected but face not recognized |
-| Absent          | Neither face nor BLE detected        |
+| Status        | Description                          |
+| ------------- | ------------------------------------ |
+| Present       | Face and BLE successfully matched    |
+| Manual Review | BLE detected but face not recognized |
+| Absent        | Neither face nor BLE detected        |
 
 ---
 
@@ -264,16 +275,16 @@ http://localhost:5173
 * Mobile application integration
 * Multi-camera classroom support
 * Anti-spoofing and liveness detection
-* Face recognition model optimization
-* Analytics dashboard for attendance trends
+* Face recognition optimization and edge deployment
+* Attendance analytics dashboard
 * Classroom-wise attendance reports
-* Edge deployment on embedded devices
+* IP camera and CCTV stream integration
 
 ---
 
 # Impact
 
-Attendly demonstrates how computer vision and IoT technologies can be integrated to build secure and efficient attendance systems.
+Attendly demonstrates how **Computer Vision**, **Artificial Intelligence**, and **IoT technologies** can be integrated to build secure and efficient attendance systems.
 
 The system helps institutions:
 
@@ -281,7 +292,7 @@ The system helps institutions:
 * Minimize manual effort
 * Improve attendance accuracy
 * Enable automated and real-time attendance monitoring
+* Scale attendance management for larger classrooms
 
----
 
 
