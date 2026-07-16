@@ -249,7 +249,7 @@ export default function ScanAttendance() {
                     </div>
 
                     <div className="studentsBleOnly scannedStudent">
-                        <h2>BLE Detected, Face Not Found (Device Only Detected)</h2>
+                        <h2>ID Detected But Face Not Found</h2>
                         <div className="studContainer">
                             {bleOnlyStudents.length === 0 ? (
                                 <span style={{ color: 'gray', padding: '15px' }}>No devices detected with missing faces</span>

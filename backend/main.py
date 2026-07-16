@@ -1,4 +1,8 @@
 import os
+import certifi
+
+os.environ["SSL_CERT_FILE"] = certifi.where()
+
 import asyncio
 import threading
 from fastapi import FastAPI
