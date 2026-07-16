@@ -116,6 +116,37 @@ Attendly/
 ├── README.md
 └── .env
 ```
+### Configure Backend IP Address
+
+Attendly is designed such that the machine running the backend acts as a **central camera server**, similar to a CCTV system in a classroom. Other devices on the same network communicate with this server to trigger scans and retrieve attendance results.
+
+Find the local IPv4 address of the backend machine:
+
+**Windows**
+
+```bash
+ipconfig
+```
+
+Locate:
+
+```text
+IPv4 Address . . . . . . . . . . : 192.168.x.x
+```
+
+Add this IP to the frontend `.env` file:
+
+```env
+VITE_BACKEND_URL=http://192.168.x.x:3000
+```
+
+Example:
+
+```env
+VITE_BACKEND_URL=http://192.168.1.15:3000
+```
+
+**Note:** If the device reconnects to a different network, the IP address may change and the `.env` file should be updated accordingly.
 
 ---
 
