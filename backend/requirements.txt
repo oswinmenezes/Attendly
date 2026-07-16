@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-dotenv
+supabase
+bleak
+certifi
+opencv-python
+matlabengine
