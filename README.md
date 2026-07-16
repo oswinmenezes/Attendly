@@ -189,7 +189,7 @@ Create a `.env` file:
 ```env
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
-VITE_BACKEND_URL=http://192.168.x.x:3000
+VITE_IP_ADDRESS=192.168.x.x
 ```
 
 ---
